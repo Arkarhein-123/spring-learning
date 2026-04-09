@@ -6,24 +6,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.example.demo.service.ProductService;
-
+import com.example.demo.service.EmployeeService;
 
 @SpringBootApplication
 public class Application {
 	@Autowired
-	private ProductService productService;
+	private EmployeeService employeeService;
 	@Bean
 	public ApplicationRunner runner() {
-		return r ->{
-			productService.createDb();
-			JPAUtil.checkData("select * from category");
-			JPAUtil.checkData("select * from product");
-			JPAUtil.checkData("select * from customer_order_product");
-			JPAUtil.checkData("select * from customer_order_customer");
-			JPAUtil.checkData("select * from customer_order");
-			JPAUtil.checkData("select * from customer");
-			JPAUtil.checkData("select * from category");
+		return r->{
+			employeeService.createDb();
+			JPAUtil.checkData("select * from employee");
+			JPAUtil.checkData("select * from full_time_employee");
+			JPAUtil.checkData("select * from part_time_employee");
+			JPAUtil.checkData("select * from contract_employee");
 		};
 	}
 	
