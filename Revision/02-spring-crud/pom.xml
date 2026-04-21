@@ -8,10 +8,10 @@
 		<version>4.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jdc</groupId>
-	<artifactId>21-employee-crud</artifactId>
-	<version>1.0</version>
-	<name>21-employee-crud</name>
+	<groupId>com.arkar</groupId>
+	<artifactId>02-spring-crud</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>02-spring-crud</name>
 	<description/>
 	<url/>
 	<licenses>
@@ -109,7 +109,7 @@
 							</annotationProcessorPaths>
 						</configuration>
 					</execution>
-					<  execution>
+					<execution>
 						<id>default-testCompile</id>
 						<phase>test-compile</phase>
 						<goals>
