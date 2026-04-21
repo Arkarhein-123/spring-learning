@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div th:fragment="application" class="container mt-3">
+		<div class="card">
+			<div class="card-header">
+				<h2>ApplicationScope</h2>
+				<h4>
+					ApplicationValue: <span th:text="${applicationValue}"></span>
+				</h4>
+			</div>
+		</div>
+		<div class="card-body">
+			<form th:action="@{/add-application-value}" method="post">
+				<div class="mb-3">
+					<label for="" class="form-label">Application Value</label> <input
+						type="text" class="form-control" name="applicationValue" />
+					<!-- name value goes to @RequestParam -->
+				</div>
+
+				<input type="submit" value="Add Application Value"
+					class="btn btn-primary w-100" />
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

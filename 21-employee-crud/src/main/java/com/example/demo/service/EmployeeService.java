@@ -21,4 +21,13 @@ public class EmployeeService {
 	public void saveEmployee(Employee employee) {
 		employeeDao.save(employee);
 	}
+	 
+	public void deleteEmployee(long id) {
+		employeeDao.deleteById(id);
+	}
+	
+	public Employee findEmployeeByID(long id) {
+		return employeeDao.findById(id).get();
+	}
+	
 }

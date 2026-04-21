@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div th:fragment="session" class="container mt-3">
+		<div class="card">
+			<div class="card-header">
+				<h2>SessionScoped</h2>
+				<h4>
+					SessionValue: <span th:text="${sessionValue}"></span>
+				</h4>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/add-session-value}" method="post">
+					<div class="mb-3">
+						<label for="" class="form-label">Session Value</label> <input
+							type="text" class="form-control" name="sessionValue" />
+						<!-- name value goes to @RequestParam -->
+					</div>
+
+					<input type="submit" value="Add Session Value"
+						class="btn btn-primary w-100" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

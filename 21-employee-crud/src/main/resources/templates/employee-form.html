@@ -1,41 +1,91 @@
 <!DOCTYPE html>
 <html th:replace="~{layout/masterLayout :: layout(~{::main})}"
- xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 
 <body>
 	<main role="main">
 		<div class="container mt-5  rounded-2">
 			<div class="row">
 				<div class="col-md-2"></div>
+				
 				<div class="col-md-8">
-					<h2 class="">Add New Employee</h2>
-					<form th:action="@{/add-employee}" th:object="${employee}" method="post"
-					class="border rounded-3 m-4 p-5 bg-info">
+					<h2 class=""
+					th:text="${employee.id != null ? 'Update Employee' : 'Add Employee'}"
+					>Add New Employee</h2>
+					<form th:action="@{/add-employee}" th:object="${employee}"
+						method="post" class="border rounded-3 m-4 p-5 bg-info">
+						
+						<input type="hidden" th:field="*{id}"/> 
+						
 						<div class="mb-3">
-							<label for="" class="form-label">FirstName</label>
-							<input type="text" th:field="*{firstName}" class="form-control"/>
+							<label for="firstName" class="form-label">First Name</label> 
+							<input
+								type="text" th:field="*{firstName}"
+								th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : ''}"
+								class="form-control" /> 
+								<small
+								th:if="${#fields.hasErrors('firstName')}"
+								class="invalid-feedback" th:errors="*{firstName}">
+								</small>
 						</div>
 						<div class="mb-3">
-							<label for="" class="form-label">LastName</label>
-							<input type="text" th:field="*{lastName}" class="form-control"/>
+							<label for="" class="form-label">LastName</label> 
+							<input type="text"
+							 th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid' : ''}"
+							 th:field="*{lastName}" 
+							class="form-control" />
+							
+							<small
+								th:if="${#fields.hasErrors('lastName')}"
+								class="invalid-feedback" th:errors="*{lastName}">
+								</small>
 						</div>
+						
 						<div class="mb-3">
 							<label for="" class="form-label">Email</label>
-							<input type="text" th:field="*{email}" class="form-control"/>
+							 <input type="text"
+							 th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
+								th:field="*{email}" class="form-control" />
+								
+							<small th:if="${#fields.hasErrors('email')}"
+							th:errors="*{email}" class="invalid-feedback"></small>
 						</div>
+						
 						<div class="mb-3">
 							<label for="" class="form-label">Phone</label>
-							<input type="text" th:field="*{phoneNumber}" class="form-control"/>
+						 	<input type="text"
+						 	 
+							th:field="*{phoneNumber}" class="form-control" />
+							
+							
 						</div>
 						<div class="mb-3">
-							<label for="" class="form-label">HireDate</label>
-							<input type="date" th:field="*{hireDate}" class="form-control"/>
+							<label for="" class="form-label">HireDate</label> 
+							<input
+								type="date"
+								th:classappend="${#fields.hasErrors('hireDate') ? 'is-invalid' : ''}"
+								 th:field="*{hireDate}" class="form-control" />
+							<small
+								th:if="${#fields.hasErrors('hireDate')}"
+								class="invalid-feedback" th:errors="*{hireDate}">
+								</small>
 						</div>
 						<div class="mb-3">
-							<label for="" class="form-label">Salary</label>
-							<input type="number" step="any" th:field="*{salary}" class="form-control"/>
+							<label for="" class="form-label">Salary</label> 
+							<input
+								type="number" 
+								th:classappend="${#fields.hasErrors('salary') ? 'is-invalid' : ''}"
+								step="any" th:field="*{salary}"
+								class="form-control" />
+							<small
+								th:if="${#fields.hasErrors('salary')}"
+								class="invalid-feedback" th:errors="*{salary}">
+								</small>
 						</div>
-						<input type="submit" value="Add Employee" class="btn btn-warning w-100 text-primary" />
+						<input type="submit" 
+							th:value="${employee.id != null ? 'Update Employee' : 'Add Employee'}"
+							value="Add Employee"
+							class="btn btn-warning w-100 text-primary" />
 					</form>
 				</div>
 				<div class="col-md-2"></div>

@@ -5,7 +5,7 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
 	<main role="main">
 		<div class="container mt-5">
-			<a th:href="@{/add-employee}" class="btn btn-primary m-3">Add Employee</a>
+			<a th:href="@{/add-employee}" class="btn btn-success b-5 m-3">Add Employee</a>
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
@@ -27,6 +27,8 @@ xmlns:th="http://www.thymeleaf.org">
 						<td th:text="${emp.phoneNumber}"></td>
 						<td th:text="${emp.hireDate}"></td>
 						<td th:text="${emp.salary}"></td>
+						<td><a th:href="@{/update-employee(id=${emp.id})}" class="btn btn-outline-primary">Update</a></td>
+						<td><a th:href="@{/delete-employee(id=${emp.id})}" class="btn btn-outline-danger">Delete</a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}" 
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<main role="main">
+		<div th:replace="~{fragments/request-form.html :: request}"></div>
+		<div th:replace="~{fragments/session-form.html :: session}"></div>
+		<div th:replace="~{fragments/application-form.html :: application}"></div>
+	</main>
+</body>
+</html>
