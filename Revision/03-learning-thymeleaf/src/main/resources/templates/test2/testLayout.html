@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html th:fragment="layout(main)"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ThymeLeaf Test Fragment</title>
+</head>
+<body>
+	<nav>This is navbar</nav>
+	<div th:replace="${main}"></div>
+</body>
+</html>
