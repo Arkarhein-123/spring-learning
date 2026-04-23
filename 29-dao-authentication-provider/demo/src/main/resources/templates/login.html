@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{layout/masterLayout :: layout(~{::main})}"
+xmlns:th="http://www.thymeleaf.org"
+>
+
+<body>
+    <main role="role">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="offset-3 col-md-6">
+                    <form th:action="@{/login}" method="post" class="p-5 border border-primary">
+                        <div class="mb-3">
+                            <label class="form-label">UserName</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="d-flex">
+                            <input type="submit" value="login" class="btn btn-primary w-100">
+                            <a th:href="@{/register}" class="btn btn-link">Don't have An Account?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

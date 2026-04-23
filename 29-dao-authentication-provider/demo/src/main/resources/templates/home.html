@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{layout/masterLayout :: layout(~{::main})}"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+  <main role="main">
+    <div class="container mt-5">
+      <h1>Happy Coding! <span th:text="${loggedInUserName}" class="text-capitalize"></span></h1>
+    </div>
+  </main>
+</body>
+</html>
