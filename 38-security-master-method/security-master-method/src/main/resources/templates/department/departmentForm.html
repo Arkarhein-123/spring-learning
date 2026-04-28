@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<main role="main">
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col">
+					<div class="card shadow rounded">
+						<div class="card-header">
+							<h5>Department Form</h5>
+						</div>
+						<div class="card-body">
+							<form th:action="@{/department-form}" method="post"
+								th:object="${department}">
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Name</label> <input
+											type="text" th:field="*{name}" class="form-control" />
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Country</label> <input type="text"
+											th:field="*{country}" class="form-control" />
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Code</label> <input type="text"
+											th:field="*{code}" class="form-control" />
+									</div>
+								</div>
+								<input type="submit" value="Add Department"
+									class="btn btn-primary w-100" />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
