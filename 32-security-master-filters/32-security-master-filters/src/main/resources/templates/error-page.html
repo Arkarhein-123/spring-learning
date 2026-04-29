@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<main role="main">
+	<div class="container mt-5">
+		<h1 class="text-center text-danger">Error Page</h1>
+		<p class="lead">You got Error!</p>
+		<p>StatucsCode : <span th:text="${statusCode}"></span></p>
+		<p>Error Message : <span th:text="${errorMessage}"></span></p>
+		<p>You want to go <a th:href="@{/}">Home</a> </p>
+	</div>
+</main>
+</body>
+</html>
