@@ -2,9 +2,12 @@ package org.example.simplerestapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.simplerestapi.dto.EmployeeDto;
+import org.example.simplerestapi.dto.Employees;
 import org.example.simplerestapi.service.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,14 +39,39 @@ public class EmployeeController {
     public EmployeeDto getEmployeeById(@PathVariable("id")long id){
         return employeeService.getEmployeeById(id);
     }
-    @PostMapping
-    public EmployeeDto createEmployee(@RequestBody EmployeeDto employeeDto){
+
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,
+                            MediaType.APPLICATION_XML_VALUE})
+    public EmployeeDto createEmployee(@RequestBody @Validated EmployeeDto employeeDto){
         return employeeService.createEmployee(employeeDto);
     }
 
-    @GetMapping
+    @GetMapping(value = "/list/{type}",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<Employees> listEmployees(@PathVariable("type")String type){
+        return switch (type){
+            case "json" -> {
+                yield ResponseEntity.status(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(employeeService.listEmployees());
+            }
+            case "xml" ->{
+                yield ResponseEntity.status(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_XML)
+                        .body(employeeService.listEmployees());
+            }
+            default -> {
+               yield   ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
+        };
+    }
+
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
     public List<EmployeeDto> listEmployee(){
         return employeeService.listEmployee();
     }
 
+    @GetMapping(value = "/list",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+    public Employees listEmployees(){
+        return employeeService.listEmployees();
+    }
 }

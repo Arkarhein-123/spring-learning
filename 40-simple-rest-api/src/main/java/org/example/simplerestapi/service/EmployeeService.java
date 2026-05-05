@@ -4,7 +4,9 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.simplerestapi.doa.EmployeeDao;
 import org.example.simplerestapi.dto.EmployeeDto;
+import org.example.simplerestapi.dto.Employees;
 import org.example.simplerestapi.entity.Employee;
+import org.example.simplerestapi.exception.FirstNameNotAdminException;
 import org.example.simplerestapi.util.EmployeeUtil;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,14 @@ public class EmployeeService {
     }
 
     public List<EmployeeDto> listEmployee(){
+        return getEmployeeDtos();
+    }
+
+    public Employees listEmployees(){
+        return new Employees(getEmployeeDtos());
+    }
+
+    private List<EmployeeDto> getEmployeeDtos() {
         return employeeDao
                 .findAll()
                 .stream()
@@ -44,7 +54,11 @@ public class EmployeeService {
     public void deleteEmployee(Long id){
         employeeDao.deleteById(id);
     }
+
     public EmployeeDto createEmployee(EmployeeDto employeeDto){
+        if ("admin".equalsIgnoreCase(employeeDto.getFirstName())){
+            throw new FirstNameNotAdminException();
+        }
         Employee employee=EmployeeUtil.toEmployee(employeeDto);
         employee=employeeDao.save(employee);
         return EmployeeUtil.toEmployeeDto(employee);
