@@ -1,0 +1,7 @@
+package com.example.demo.dto;
+
+
+
+
+public record ResponseDto(int data) {}
+	
