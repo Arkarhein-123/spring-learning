@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		var context = SpringApplication.run(Application.class, args);
+		MyFirstClass myFirstClass = context.getBean(MyFirstClass.class);
+		System.out.println(myFirstClass.greet());
 	}
 
 }
