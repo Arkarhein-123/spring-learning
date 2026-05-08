@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<main role="main">
+		<h1 class="text-center text-success" style="font-weight:800; font-style:italic;">Products</h1>
+		
+		<div class="container mb-5">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="d-flex flex-column">
+						<a th:href="@{'/affable-bean/ui/products?name=bakery'}" class="btn btn-success py-2 my-2 rounded">Bakery</a>
+						<a th:href="@{'/affable-bean/ui/products?name=dairy'}" class="btn btn-success py-2 my-2 rounded">Dairy</a> 
+						<a th:href="@{'/affable-bean/ui/products?name=fruit_veg'}" class="btn btn-success py-2 my-2 rounded">Fruit and Veg</a>
+						<a th:href="@{'/affable-bean/ui/products?name=meats'}" class="btn btn-success py-2 my-2 rounded">Bakery</a>
+					</div>
+				</div>
+				
+				<div class="col-md-8">
+                <div class="table-responsive shadow-sm rounded">
+                    <table class="table table-hover align-middle bg-white mb-0">
+                        <tbody class="border-top-0">
+                            <tr th:each="item : ${products}">
+                                <td style="width: 100px;">
+                                    <img th:src="@{'/images/products/'+${item.name}+'.png'}" 
+                                         alt="item image" 
+                                         class="img-fluid rounded" 
+                                         style="max-height: 50px; object-fit: contain;"/>
+                                </td>
+                                <td class="fw-bold text-dark" th:text="${item.name}"></td>
+                                <td class="text-muted" th:text="${'$' + item.price}"></td>
+                                <td class="text-end px-4">
+                                    <a href="" 
+                                       class="btn btn-success rounded-pill px-4 shadow-sm">
+                                        Purchase
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
