@@ -18,4 +18,8 @@ public class AffableBeanService {
 		return productClient.listAllProducts(name);
 	}
 	
+	public ProductDto getProductById(Long id) {
+		return productClient.getProductById(id);
+	}
+	
 }

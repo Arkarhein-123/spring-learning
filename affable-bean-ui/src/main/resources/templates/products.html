@@ -3,10 +3,9 @@
 	xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<main role="main">
-		<h1 class="text-center text-success" style="font-weight:800; font-style:italic;">Products</h1>
-		
+	<main role="main">		
 		<div class="container mb-5">
+			<div th:replace="~{fragments/cart.html :: cart}"></div>
 			<div class="row">
 				<div class="col-md-4">
 					<div class="d-flex flex-column">
@@ -31,7 +30,7 @@
                                 <td class="fw-bold text-dark" th:text="${item.name}"></td>
                                 <td class="text-muted" th:text="${'$' + item.price}"></td>
                                 <td class="text-end px-4">
-                                    <a href="" 
+                                    <a th:href="@{'/affable-bean/ui/add-to-cart?id=' + ${item.id} }" 
                                        class="btn btn-success rounded-pill px-4 shadow-sm">
                                         Purchase
                                     </a>

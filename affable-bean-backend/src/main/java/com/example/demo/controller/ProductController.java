@@ -43,8 +43,13 @@ public class ProductController {
 	            catName
 	    );
 	}
+	
+	@GetMapping("/products/product/{id}")
+	public ProductDto getProductById(@PathVariable("id") Long id) {
+		return toDto(productService.getProductById(id));
+	}
 
-	@GetMapping("products/{name}")
+	@GetMapping("/products/{name}")
 	public List<ProductDto> listAllProducts(@PathVariable("name") String name) {
 
 		return productService

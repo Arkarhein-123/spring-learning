@@ -15,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 public class ProductService {
 	private final ProductDao productDao;
 	
+	public  Product getProductById(Long id) {
+		return productDao.findById(id).orElseThrow();
+	}
 	
 	public List<Product> listProductByCategoryName(String categoryName){
 		return productDao.listProductsByCategoryName(categoryName);

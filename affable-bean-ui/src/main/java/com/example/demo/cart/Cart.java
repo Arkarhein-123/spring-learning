@@ -1,7 +1,8 @@
 package com.example.demo.cart;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -13,14 +14,16 @@ import lombok.Data;
 public class Cart {
 	@Id
 	private String id;
-	private List<CartItem> items = new ArrayList<>();
-	
+	private Set<CartItem> items = new HashSet<>();
 	
 	public void addItem(CartItem cartItem) {
 		items.add(cartItem);
 	}
 	
+	
 	public void removeItem(Long productId) {
 		items.removeIf(item -> item.getId() == (productId));
 	}
+	
+	
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/masterLayout :: layout(~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<main role="main">
+		<div class="container my-5">
+			<div class="d-flex align-items-center mb-4">
+				<p class="lead mb-0 text-dark fw-semibold">
+					<i class="bi bi-cart3 me-2"></i> Your Shopping Cart Contains: <span
+						class="badge bg-primary rounded-pill ms-2 px-3 py-2"
+						th:text="${itemSize}">0</span> <span class="ms-1 text-dark small">items</span>
+				</p>
+			</div>
+			
+			<div class="d-flex justify-content-around align-items-center">
+				<a th:href="@{/affable-bean/ui/clear-cart}" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">Clear Cart</a>
+				<a th:href="@{/affable-bean/ui/home}" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">Continue Shopping</a>
+				<a href="" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">CheckOut</a>
+			</div>
+			
+			<div th:if="${cartItems.isEmpty()}">
+				<div class="d-flex justify-content-center align-item-center">
+					<h3>No Cart Items</h3>
+				</div>
+			</div>
+			<table th:if="${!cartItems.isEmpty()}" class="table table-striped table-hover table-warning">
+				<tr>
+					<th>Product</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>SubTotal</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="item : ${cartItems}">
+					<td><img th:src="@{'/images/products/'+${item.name}+'.png'}"
+						alt="item image" class="img-fluid rounded"
+						style="max-height: 50px; object-fit: contain;" /></td>
+					<td th:text="${item.name}"></td>
+					<td th:text="${'$'+item.price}"></td>
+					<td><a
+						th:href="@{'/affable-bean/ui/increase-quantity?id=' + ${item.id} }"
+						class="btn btn-success px-3 m-2 fs-5">+</a> <span
+						th:text="${item.quantity}"></span> <a
+						th:href="@{'/affable-bean/ui/decrease-quantity?id=' + ${item.id} }"
+						class="btn btn-danger px-3 m-2 fs-5">-</a></td>
+					<td
+						th:text="${'$' + #numbers.formatDecimal(item.price * item.quantity, 1, 'POINT', 2, 'POINT')}">
+					</td>
+					<td>
+						<a th:href="@{'/affable-bean/ui/remove-cart-item?id=' + ${item.id} }" class="btn btn-outline-danger">Remove</a>
+					</td>
+				</tr>
+			</table>
+			<div class="offset-md-8 col-md-4 text-end">
+				<span class="fw-bold h5">Total:</span> <span
+					class="fw-bold h5 text-dark"
+					th:text="${'$' + #numbers.formatDecimal(totalPrice, 1, 'POINT', 2, 'POINT')}">
+				</span>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

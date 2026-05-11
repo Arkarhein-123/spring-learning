@@ -13,4 +13,6 @@ public interface ProductClient {
 	
 	@GetExchange("/products/{name}")
 	List<ProductDto> listAllProducts(@PathVariable("name")String name);
+	@GetExchange("/products/product/{id}")
+	ProductDto getProductById(@PathVariable("id")Long id);
 }
