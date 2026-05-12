@@ -20,7 +20,6 @@ public class Cart {
 		items.add(cartItem);
 	}
 	
-	
 	public void removeItem(Long productId) {
 		items.removeIf(item -> item.getId() == (productId));
 	}
