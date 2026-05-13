@@ -22,5 +22,7 @@ public class SortMountains {
 
         mountains.sort((a,b)->String.valueOf(a.getHeight()).compareTo(String.valueOf(b.getHeight())));
         System.out.println(mountains);
+
+
     }
 }

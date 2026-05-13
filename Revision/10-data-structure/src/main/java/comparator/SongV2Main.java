@@ -25,5 +25,8 @@ public class SongV2Main {
         System.out.println(songV2List);
         System.out.println("**********************************************");
 
+        System.out.println("=============== Testing ===============");
+        songV2List.sort((song1, song2) -> song1.getTitle().compareTo(song2.getTitle()));
+        System.out.println(songV2List);
     }
 }

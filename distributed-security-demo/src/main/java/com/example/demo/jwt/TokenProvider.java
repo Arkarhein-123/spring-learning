@@ -29,8 +29,4 @@ public class TokenProvider {
 		signedJWT.sign(signer);
 		return signedJWT.serialize();
 	} 
-	
-	
-	
-	
 }
