@@ -13,6 +13,8 @@ import com.example.demo.entity.ProductInventoryAudit;
 import com.example.demo.exception.OutOfStockException;
 import com.example.demo.exception.ProductNotFoundException;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ProductInventoryService {
 	@Autowired
@@ -24,7 +26,9 @@ public class ProductInventoryService {
 		return productInventoryDao.findAll();
 	}
 	
+	
 // debutQuantity(long productId, int quantity, String username)
+	@Transactional
 	public String debutQuantity(long productId, int debutQuantity, String username) {
 		ProductInventory beforeDebutProduct = findProductInventoryById(productId);
 		if(beforeDebutProduct.getQuantity() < debutQuantity) {
@@ -36,7 +40,7 @@ public class ProductInventoryService {
 				productInventoryDao.saveAndFlush(beforeDebutProduct);
 		ProductInventoryAudit productInventoryAudit = 
 				new ProductInventoryAudit(username, debutQuantity,InventoryStatus.DEBUT);
-		productInventoryAudit.setProductInventory(beforeDebutProduct);
+		productInventoryAudit.setProductInventory(beforeDebutProduct); 
 		productInventoryAuditDao.save(productInventoryAudit);
 		return "success debut product";
 	}

@@ -32,5 +32,4 @@ public class InventoryApiController {
 		return new ResponseEntity(returnString, HttpStatus.OK);
 	}
 	
-
 }
