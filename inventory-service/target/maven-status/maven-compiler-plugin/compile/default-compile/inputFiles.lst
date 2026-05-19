@@ -1,0 +1,14 @@
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\controller\InventoryApiController.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\controller\InventoryController.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\dao\ProductInventoryAuditDao.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\dao\ProductInventoryDao.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\dto\ProductInventoryDto.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\entity\InventoryStatus.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\entity\ProductInventory.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\entity\ProductInventoryAudit.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\exception\ApiError.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\exception\GlobalExceptionHandler.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\exception\OutOfStockException.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\exception\ProductNotFoundException.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\InventoryServiceApplication.java
+C:\bootcamp16\inventory-service\src\main\java\com\example\demo\service\ProductInventoryService.java

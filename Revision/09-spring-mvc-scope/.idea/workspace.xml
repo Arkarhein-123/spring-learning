@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bdc06273-733e-4193-bdce-3cf501d4a8b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../11-stream-api_and_Lambda/src/main/java/StreamApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../11-stream-api_and_Lambda/src/main/java/StreamApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../affable-bean-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../affable-bean-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/dao/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/dao/RoleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/jwt/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/jwt/TokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/CustomeUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/SecurityUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/java/com/example/demo/security/SecurityUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../distributed-security-demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../distributed-security-demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../employee-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../employee-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/PaymentServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/PaymentServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/TransactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/src/main/java/com/example/demo/entity/TransactionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../payment-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../../payment-service/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3Dj5zLYVDjFCiMIh9XCHLDhnS8g" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/orion/Desktop/Arkar-Data/spring-by-sayakyaw/Revision/09-spring-mvc-scope",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ScopeApplication" type="Spring Boot" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.arkar.scope.ScopeApplication" />
+      <module name="scope" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bdc06273-733e-4193-bdce-3cf501d4a8b2" name="Changes" comment="" />
+      <created>1778782899840</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778782899840</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
