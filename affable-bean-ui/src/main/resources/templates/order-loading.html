@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="refresh" th:content="'2;url=/affable-bean/ui/order-info/' + ${orderId}">
+<title>Loading...</title>
+<link rel="stylesheet" href="../../static/css/app.css"
+	th:href="@{/css/app.css}" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body style="background-color: #F9F6BD">
+
+	<div class="container">
+		<img th:src="@{/images/logo.png}" alt="Logo" id="logo" /> <img
+			th:src="@{/images/logoText.png}" alt="LogoText" id="logoText" /> <img
+			th:src="@{/images/stalk.png}" alt="Stalk" id="stalk" />
+	</div>
+
+
+	<!-- Centered spinner -->
+	<div class="d-flex justify-content-center align-items-center vh-100">
+		<div class="spinner-border text-success" role="status">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+
+</body>
+</html>

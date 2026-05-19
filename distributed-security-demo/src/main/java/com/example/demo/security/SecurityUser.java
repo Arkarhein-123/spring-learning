@@ -9,7 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo.entity.User;
 
-public class SecurityUser implements UserDetails {
+public class SecurityUser implements UserDetails{
+	
 	private final User user;
 
 	public SecurityUser(User user) {
@@ -19,23 +20,21 @@ public class SecurityUser implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		 return user.getRoles()
-				 .stream()
-				 .map(r -> new SimpleGrantedAuthority(r.getRoleName())) 
-				 .toList();
+		return user.getRoles()
+				.stream()
+				.map(r -> new SimpleGrantedAuthority(r.getRoleName()))
+				.toList();
 	}
 
 	@Override
 	public @Nullable String getPassword() {
-		// TODO Auto-generated method stub
 		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
 		return user.getUsername();
 	}
 	
-	
+
 }

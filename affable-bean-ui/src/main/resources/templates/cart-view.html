@@ -16,7 +16,7 @@
 			<div class="d-flex justify-content-around align-items-center">
 				<a th:href="@{/affable-bean/ui/clear-cart}" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">Clear Cart</a>
 				<a th:href="@{/affable-bean/ui/home}" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">Continue Shopping</a>
-				<a href="" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">CheckOut</a>
+				<a th:href="@{/affable-bean/ui/checkout-view}" class="bg-success text-white fs-5 py-3 px-5 mb-3 rounded text-decoration-none">CheckOut</a>
 			</div>
 			
 			<div th:if="${cartItems.isEmpty()}">

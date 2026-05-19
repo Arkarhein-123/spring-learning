@@ -13,28 +13,35 @@ import com.nimbusds.jose.JOSEException;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-	@Autowired
-	public AuthService authService;
 	
-	record RegisterDto(
-				String username,
-				String password,
-				String email
-			) {}
+	@Autowired
+	private AuthService authService;
+	
+	record RegisterDto(String username,String password,String email) {}
+	record LoginDto(String username,String password) {}
 	
 	record LoginResponse(String token) {}
 	
-	record LoginDto(String username, String password) {}
-	@PostMapping("/register")
-	public ResponseEntity<String> register(@RequestBody RegisterDto dto){
-		String returnString = authService.register(dto.username, dto.password,dto.email);
-		return ResponseEntity.status(HttpStatus.CREATED).body(returnString);
-	}
-	
+	// http://localhost:8080/api/auth/login
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> login(@RequestBody LoginDto dto ) throws JOSEException{
-		System.out.println("login method:"+ dto);
-		String returnString = authService.login(dto.username, dto.password);
+	public ResponseEntity<LoginResponse>  login(@RequestBody LoginDto dto)throws JOSEException{
+		String returnString= authService.login(dto.username, dto.password);
 		return ResponseEntity.ok().body(new LoginResponse(returnString));
 	}
+	
+	
+	@PostMapping("/register")
+	public ResponseEntity<String> register(@RequestBody RegisterDto dto){
+		String returnString=authService.register(dto.username,
+				dto.password,
+				dto.email);
+		return ResponseEntity.status(HttpStatus.CREATED)
+				.body(returnString);
+	}
+	
+	
+	
+	
+	
+
 }

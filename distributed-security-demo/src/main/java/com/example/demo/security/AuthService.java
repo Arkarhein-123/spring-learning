@@ -6,7 +6,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.RoleDao;
@@ -28,31 +27,38 @@ public class AuthService {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private TokenProvider tokenProvider;
-
-	public String register(String username, String password, String email) {
-		User user = new User(username, passwordEncoder.encode(password), email);
-		roleDao.findByroleName("ROLE_USER").ifPresentOrElse(role -> {
+	
+	public String login(String username,String password)throws JOSEException {
+		var auth=new UsernamePasswordAuthenticationToken(username, password);
+		var authentication=authenticationManager
+				.authenticate(auth);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return tokenProvider.createToken(authentication.getName());
+//		return "%s successfully logined."
+//				.formatted(authentication.getName());
+	}
+	
+	
+	
+	public String register(String username,String password,String email) {
+		User user=new User(username,
+				passwordEncoder.encode(password),
+				email);
+		roleDao.findByRoleName("ROLE_USER")
+		.ifPresentOrElse(role ->{
 			user.getRoles().add(role);
 			userDao.save(user);
-		}, () -> {
-			Role role = new Role();
+		}, ()->{
+			Role role=new Role();
 			role.setRoleName("ROLE_USER");
 			user.getRoles().add(roleDao.save(role));
 			userDao.save(user);
 		});
-		return "%s registered successfully".formatted(username);
+		return "%s registered successfully!".formatted(username);
 	}
-	
-	public String login(String username, String password) throws JOSEException{
-		var auth = new UsernamePasswordAuthenticationToken(username, password);
-		Authentication authentication = 
-				authenticationManager.authenticate(auth);
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		return tokenProvider.createToken(authentication.getName());
-//		return "%s successfully logged in!".formatted(authentication.getName());
-	}
-	
-	
+
 }
+
+
+
+

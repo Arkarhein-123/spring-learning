@@ -28,7 +28,6 @@ public class ProductController {
 			String categoryName
 			) {
 	}
-
 	
 	private ProductDto toDto(Product product) {
 	    // Null-safe category name check
@@ -43,6 +42,7 @@ public class ProductController {
 	            catName
 	    );
 	}
+
 	
 	@GetMapping("/products/product/{id}")
 	public ProductDto getProductById(@PathVariable("id") Long id) {

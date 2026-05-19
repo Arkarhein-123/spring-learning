@@ -1,17 +1,25 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.cart.CartItem;
 import com.example.demo.cart.CartService;
 import com.example.demo.dto.ProductDto;
+import com.example.demo.order.success.OrderInfo;
+import com.example.demo.order.success.OrderInfoRepository;
+import com.example.demo.order.success.OrderStatus;
 import com.example.demo.service.AffableBeanService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class AffableBeanController {
 	private final AffableBeanService affableBeanService;
 	private final CartService cartService;
+	private final OrderInfoRepository orderInfoRepository;
 	
 	private String currentCategoryName;
 	
@@ -29,6 +38,48 @@ public class AffableBeanController {
 	public String home() {
 		return "home";
 	}
+	
+	@GetMapping("/checkout-view")
+	public String checkoutView() {
+		return "checkout-view";
+	}
+	// /affable-bean/ui/checkout-view
+	@PostMapping("/checkout-view")
+	public String processCheckout(
+	        @RequestParam("username") String username,
+	        @RequestParam("password") String password,
+	        @RequestParam("accountNumber") String accountNumber
+	        ) {
+	    String orderId = UUID.randomUUID().toString();
+	    affableBeanService.checkout(username, password, accountNumber, orderId);
+	    
+	    // Pass the orderId in the redirect path
+	    // orderId ကို mapping pattern အတိုင်း ထည့်ပေးလိုက်ပါ
+	    return "redirect:/affable-bean/ui/order-info/" + orderId;
+	}
+	
+	@RequestMapping("/order-info/{orderId}")
+	public String orderStatusInfo(@PathVariable("orderId") String orderId, Model model) {
+	    return orderInfoRepository.findByOrderId(orderId)
+	        .map(orderInfo -> {
+	            model.addAttribute("orderId", orderId);
+	            
+	            if (orderInfo.getOrderStatus().equals(OrderStatus.ORDER_SUCCESS)) {
+	                model.addAttribute("orderStatus", "Order Success");
+	            } else if (orderInfo.getOrderStatus().equals(OrderStatus.ORDER_FAILURE)) {
+	                model.addAttribute("orderStatus", "Order Cancelled");
+	            } else {
+	                model.addAttribute("orderStatus", "Unknown Status");
+	            }
+	            return "success";
+	        })
+	        .orElseGet(() -> {
+	            model.addAttribute("orderId", orderId);
+	            return "order-loading";
+	        });
+	}
+
+	
 	// /affable-bean/ui/cart-view
 	@GetMapping("/cart-view")
 	public String viewCart(Model model) {
@@ -108,5 +159,4 @@ public class AffableBeanController {
 	public int cartSize() {
 		return cartService.getMyCart().getItems().size();
 	}
-	
 }
