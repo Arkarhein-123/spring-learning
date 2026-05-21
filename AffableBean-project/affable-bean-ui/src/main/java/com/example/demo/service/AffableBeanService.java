@@ -31,10 +31,8 @@ public class AffableBeanService {
 	private final AuthClient authClient;
 	private final OrderClient orderClient;
 	private final CartService cartService;
-	private final OrderInfoRepository orderInfoRepository;
 	
-	public record PaymentSuccessRequest(String orderCode, String sessionId) {}
-	public record OrderFailRequest(String orderId, String message) {}
+
 	
 	private OrderItem toOrderItem(CartItem cartItem) {
 		return new OrderItem(cartItem.getName(),cartItem.getQuantity(),cartItem.getPrice());
@@ -76,32 +74,6 @@ public class AffableBeanService {
                 .getSessionId();
     }
 	
-	@RabbitListener(queues = "success.order.queue")
-	public void orderSuccessListener(PaymentSuccessRequest request) {
-	    System.out.println("Affable Bean UI : " + request.orderCode());  
-	    changeOrderStatus(OrderStatus.ORDER_SUCCESS, request.orderCode);
-	    	
-	}
 	
-	@RabbitListener(queues = "fail.order.queue")
-	public void orderFailListener(OrderFailRequest request) {
-		System.out.println("Affable Bean UI : " + request.orderId());  
-		changeOrderStatus(OrderStatus.ORDER_FAILURE,request.orderId);
-	}
-	
-//	helper Method
-	private void changeOrderStatus(OrderStatus orderStatus,String orderId) {
-		 orderInfoRepository.findByOrderId(orderId)
- 		.ifPresentOrElse(order ->{
- 			System.out.println("Order already existed.");
- 			order.setOrderStatus(orderStatus);
- 			orderInfoRepository.save(order);
- 		}, () ->{
- 			OrderInfo orderInfo = new OrderInfo();
- 			orderInfo.setOrderId(orderId);
- 			orderInfo.setOrderStatus(orderStatus);
- 			orderInfoRepository.save(orderInfo);
- 		});
-	}
 	
 }

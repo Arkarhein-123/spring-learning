@@ -21,6 +21,7 @@ public class OrderInfo {
 	private String orderId;
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
+	private String message;
 	
 	public OrderInfo(String orderId, OrderStatus orderStatus) {
 		super();

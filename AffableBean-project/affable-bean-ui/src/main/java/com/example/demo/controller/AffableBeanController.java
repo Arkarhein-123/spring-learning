@@ -62,14 +62,15 @@ public class AffableBeanController {
 	public String orderStatusInfo(@PathVariable("orderId") String orderId, Model model) {
 	    return orderInfoRepository.findByOrderId(orderId)
 	        .map(orderInfo -> {
-	            model.addAttribute("orderId", orderInfo.getId());
+	            model.addAttribute("orderId", orderInfo.getOrderId()); // orderInfo.getOrderId() ကို သုံးပါ
 	            
 	            if (orderInfo.getOrderStatus().equals(OrderStatus.ORDER_SUCCESS)) {
-	            		model.addAttribute("error",false);
+	                model.addAttribute("error", false);
 	                model.addAttribute("orderStatus", "Order Success");
 	            } else if (orderInfo.getOrderStatus().equals(OrderStatus.ORDER_FAILURE)) {
-	            		model.addAttribute("error",true);
-	                model.addAttribute("orderStatus", "Order Failed cause out of stock!");
+	                model.addAttribute("error", true);
+	                // Database ထဲက message ကို ယူသုံးပါ (Payment fail လား၊ Stock ပြတ်တာလား သူဘာသာပြပါလိမ့်မယ်)
+	                model.addAttribute("orderStatus", orderInfo.getMessage()); 
 	            } else { 
 	                model.addAttribute("orderStatus", "Unknown Status");
 	            }

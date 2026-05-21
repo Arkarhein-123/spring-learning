@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 public class LoggingAspect {
     private Logger logger = Logger.getLogger(LoggingAspect.class.getName());
 
-    @Around("execution(* com.testingAop.CarSimulation.*(..))")
+    @Around("execution(* com.testingAop.service.*.*(..))")
     public void log(ProceedingJoinPoint joinPoint) throws Throwable{
         logger.info("Before Method Execution....");
         joinPoint.proceed();

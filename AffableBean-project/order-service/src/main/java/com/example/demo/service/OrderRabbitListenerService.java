@@ -1,81 +1,73 @@
 package com.example.demo.service;
 
-import java.util.Optional;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
 
 import com.example.demo.config.OrderRabbitConfig;
 import com.example.demo.dao.OrderDao;
 import com.example.demo.entity.Order;
 import com.example.demo.entity.OrderStatus;
 
-@Service
-public class OrderRabbitListenerService {
-    
-    @Autowired
-    private OrderDao orderDao;
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-    
-    public record PaymentSuccessRequest(String orderCode) {}
-    public record OrderFailDto(String orderId, String reason) {}
+import lombok.RequiredArgsConstructor;
 
-    /**
-     * Handles Success Tokens from the Payment processing microservice
-     */
-    @RabbitListener(queues = "payment_success_queue")
-    @Transactional
-    public void paymentSuccessListener(PaymentSuccessRequest request) {
-        try {
-            Optional<Order> orderOpt = orderDao.findByOrderCode(request.orderCode);
-            if (orderOpt.isPresent()) {
-                Order order = orderOpt.get();
-                order.setStatus(OrderStatus.SUCCESS);
-                orderDao.saveAndFlush(order);
-                
-                var orderSuccess = new PaymentSuccessRequest(order.getOrderCode());
-                rabbitTemplate.convertAndSend(OrderRabbitConfig.EXCHANGE, "order.success", orderSuccess);
-                System.out.println("SAGA SUCCESS: Order status updated to SUCCESS for: " + request.orderCode);
-            }
-        } catch (Exception e) {
-            System.err.println("Error processing payment success token: " + e.getMessage());
-        }
-    }
-    
-    /**
-     * Handles Saga Rollback Tokens coming out of the Inventory microservice
-     */
-    @RabbitListener(queues = "fail.order.queue") // Matches your OrderRabbitConfig.FAIL_ORDER_QUEUE literal
-    @Transactional
-    public void handleOrderFailureFromInventory(OrderFailDto failDto) {
-        System.out.println("====== [START] Order Compensation Flow ======");
-        System.out.println("Received Saga Rollback Event for Order ID: " + failDto.orderId());
-        
-        try {
-            Optional<Order> orderOptional = orderDao.findByOrderCode(failDto.orderId());
-            
-            if (orderOptional.isPresent()) {
-                Order order = orderOptional.get();
-                
-                if (order.getStatus() == OrderStatus.CANCEL) { 
-                    System.out.println("Order " + failDto.orderId() + " is already CANCELLED. Skipping.");
-                    return;
-                }
-                
-                order.setStatus(OrderStatus.CANCEL); 
-                orderDao.saveAndFlush(order);
-                System.out.println("SUCCESS: Order " + failDto.orderId() + " status set to CANCEL.");
-            } else {
-                System.err.println("WARNING: Order code not found in database: " + failDto.orderId());
-            }
-            
-        } catch (Exception e) {
-            System.err.println("CRITICAL ERROR inside Order failure consumer: " + e.getMessage());
-            e.printStackTrace();
-        }
-        System.out.println("====== [END] Order Compensation Flow ======");
-    }
+@Service
+@RequiredArgsConstructor
+public class OrderRabbitListenerService {
+
+	private final OrderDao orderDao;
+	private final RabbitTemplate rabbitTemplate;
+
+	public record PaymentSuccessRequest(String orderCode) {
+	}
+
+	public record OrderFailRequest(String orderId, String message) {
+	}
+
+	public record InventoryFailRequest(String orderId, String message) {
+	}
+
+	public record InventoryCompansationDto(String orderId, String messsage) {
+	};
+
+	public record OrderCancelDto(String orderCode, String message) {
+	}
+
+	private Order changeOrderStatus(String orderCode, OrderStatus orderStatus) {
+		Order order = orderDao.findByOrderCode(orderCode).get();
+		order.setStatus(orderStatus);
+		orderDao.save(order);
+		return order;
+	}
+
+	@RabbitListener(queues = "order.fail.from.inventory.queue")
+	public void orderFailListenerPaymentFail(OrderCancelDto dto) {
+		changeOrderStatus(dto.orderCode, OrderStatus.CANCEL);
+		
+	}
+
+	@RabbitListener(queues ="inventory.compansation.queue")
+	public void paymentFailListener(InventoryCompansationDto inventoryCompensationDto) {
+		Order order = changeOrderStatus(inventoryCompensationDto.orderId(), OrderStatus.CANCEL);
+		var orderCancel = new OrderCancelDto(order.getOrderCode(), inventoryCompensationDto.messsage());
+		rabbitTemplate.convertAndSend(OrderRabbitConfig.EXCHANGE,
+				OrderRabbitConfig.ORDER_CANCEN_INVENTORY_FAIL_BINDING_KEY, orderCancel);
+
+	}
+
+	@RabbitListener(queues = "payment_success_queue")
+	public void paymentSuccessListener(PaymentSuccessRequest paymentRequest) {
+		Order order = changeOrderStatus(paymentRequest.orderCode(), OrderStatus.SUCCESS);
+		var orderSuccess = new PaymentSuccessRequest(order.getOrderCode());
+		rabbitTemplate.convertAndSend(OrderRabbitConfig.EXCHANGE, "order.success", orderSuccess);
+	}
+
+	@RabbitListener(queues = "inventory.fail.queue")
+	public void inventoryFailListener(InventoryFailRequest failRequest) {
+		Order order = changeOrderStatus(failRequest.orderId(), OrderStatus.CANCEL);
+		var orderFailReqeust = new OrderFailRequest(failRequest.orderId(), failRequest.message());
+		rabbitTemplate.convertAndSend(OrderRabbitConfig.EXCHANGE, "order.failed", orderFailReqeust);
+
+	}
+
 }

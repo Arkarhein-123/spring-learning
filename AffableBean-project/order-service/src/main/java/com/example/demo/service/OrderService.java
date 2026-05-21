@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
@@ -43,14 +44,12 @@ public class OrderService {
 	public String saveOrder(String username,List<OrderItem> orderItems,
 			String accountNumber,String orderId) {
 		
-		
 		Order order=new Order(orderId,
 				OrderStatus.PENDING, username);
 		orderItems.stream().forEach(order::addOrderItem);
 		orderDao.save(order);
-		/*
-		 * exchange,bindingkey, body
-		 */
+		
+		
 		Map<String,Integer> inventoryProducts=new HashMap<>();
 		double total=0;
 		for(OrderItem item:orderItems) {
@@ -67,8 +66,6 @@ public class OrderService {
 				"order.created",requestBody);
 		return "successful created new order!";
 	}
-	
-	
 	
 
 }

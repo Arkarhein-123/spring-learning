@@ -18,12 +18,15 @@ public class RabbitMqConfig {
 	public static final String INVENTORY_COMPANSATION_QUEUE="inventory.compansation.queue";
 	public static final String INVENTORY_COMPANSATION_BINDING_KEY="inventoy.compansation";
 	public static final String PAYMENT_QUEUE ="payment.processing.queue";	
+
 	public static final String ROUTING_KEY_INVENTORY_SUCCESS="inventory.stock.decreased";
 	
 	@Bean
 	public TopicExchange sagaExchange() {
 		return new TopicExchange(EXCHANGE);
 	}
+	
+	
 	@Bean
 	public Queue inventoryCompansationQueue() {
 		return new Queue(INVENTORY_COMPANSATION_QUEUE);
@@ -36,6 +39,8 @@ public class RabbitMqConfig {
 				.to(topicExchange)
 				.with(INVENTORY_COMPANSATION_BINDING_KEY);
 	}
+	
+	
 	@Bean
 	public Queue inventoryFailQueue() {
 		return new Queue(INVENTORY_FAIL_QUEUE);

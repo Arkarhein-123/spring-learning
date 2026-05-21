@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,16 +31,15 @@ public class Order {
 	private Long id;
 	private String orderCode;
 	@CreationTimestamp
-	@Column(name = "crated_at")
 	private LocalDateTime cratedAt;
 	@Enumerated(EnumType.STRING)
-	@Column(name = "order_status")
 	private OrderStatus status;
 	private String username;
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "affable_bean_order_items")
 	private List<OrderItem> orderItems=
 			new ArrayList<>();
+	
 	
 	
 	public void addOrderItem(OrderItem orderItem) {

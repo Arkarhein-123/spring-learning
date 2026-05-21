@@ -18,47 +18,57 @@ public class OrderRabbitConfig {
 	public static final String QUEUE = "order.queue";
 	public static final String SUCCESS_QUEUE = "success.order.queue";
 	public static final String FAIL_ORDER_QUEUE = "fail.order.queue";
-	
+	public static final String ORDER_CANCEL_FROM_INVENTORY_FAIL_QUEUE = "order.fail.from.inventory.queue";
+	public static final String ORDER_CANCEN_INVENTORY_FAIL_BINDING_KEY = "order.cancel.inventory";
 	
 	@Bean
 	public TopicExchange exchange() {
 		return new TopicExchange(EXCHANGE);
 	}
+	
+	@Bean
+	public Queue orderCancelInventoryQueue() {
+		return new Queue(ORDER_CANCEL_FROM_INVENTORY_FAIL_QUEUE);
+	}
+	
+	@Bean
+	public Binding orderCancenlBinding(
+			@Qualifier("orderCancelInventoryQueue")Queue orderCancelInventoryQueue,
+			TopicExchange exchange
+			) {
+		return BindingBuilder
+				.bind(orderCancelInventoryQueue)
+				.to(exchange)
+				.with(ORDER_CANCEN_INVENTORY_FAIL_BINDING_KEY);
+	}
+	
 	@Bean
 	public Queue orderQueue() {
 		return new Queue(QUEUE);
 	}
-	
 	@Bean
 	public Queue successOrderQueue() {
 		return new Queue(SUCCESS_QUEUE);
 	}
-	
-	@Bean 
+	@Bean
 	public Queue failOrderQueue() {
 		return new Queue(FAIL_ORDER_QUEUE);
 	}
-	
 	@Bean
-	public Binding failOrderBinding(@Qualifier("failOrderQueue")Queue failOrderQueue,TopicExchange exchange) {
-		return BindingBuilder.bind(failOrderQueue)
-				.to(exchange)
-				.with("order.fail");		
+	public Binding failOrderBinding(@Qualifier("failOrderQueue")Queue queue,TopicExchange exchange) {
+		return BindingBuilder.bind(queue).to(exchange).with("order.fail");
 	}
-		
 	@Bean
-	public Binding successOrderBinding(@Qualifier("successOrderQueue")Queue successOrderQueue,TopicExchange exchange) {
+	public Binding successOrderBinding(@Qualifier("successOrderQueue")Queue successOrderQueue
+			,TopicExchange exchange) {
 		return BindingBuilder.bind(successOrderQueue)
-				.to(exchange)
-				.with("order.success");
-	} 
-	
+				.to(exchange).with("order.success");
+	}
 	@Bean
-	public  Binding  binding(@Qualifier("orderQueue")Queue orderQueue,TopicExchange exchange) {
-		return BindingBuilder.bind(orderQueue)
+	public  Binding  binding(@Qualifier("orderQueue") Queue ordQueue,TopicExchange exchange) {
+		return BindingBuilder.bind(ordQueue)
 				.to(exchange).with("order.created");
 	}
-	
 	@Bean
 	public MessageConverter messageConverter() {
 		return new Jackson2JsonMessageConverter();
