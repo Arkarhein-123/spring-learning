@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="579d03eb-c426-47f5-9635-6cffdac6272a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Revision/09-spring-mvc-scope/scope/src/main/java/com/arkar/scope/ScopeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Revision/09-spring-mvc-scope/scope/src/main/java/com/arkar/scope/ScopeApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Revision/09-spring-mvc-scope/scope/src/main/java/com/arkar/scope/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Revision/09-spring-mvc-scope/scope/src/main/java/com/arkar/scope/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Revision/11-stream-api_and_Lambda/src/main/java/StreamApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Revision/11-stream-api_and_Lambda/src/main/java/StreamApiTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/AffableBeanUiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/AffableBeanUiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/client/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/client/ProductClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/controller/AffableBeanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/controller/AffableBeanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/service/AffableBeanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/java/com/example/demo/service/AffableBeanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../affable-bean-ui/src/main/resources/templates/cart-view.html" beforeDir="false" afterPath="$PROJECT_DIR$/../affable-bean-ui/src/main/resources/templates/cart-view.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/dao/RoleDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/dao/RoleDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/entity/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/jwt/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/jwt/TokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/CustomeUserDetailsService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/SecurityUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/java/com/example/demo/security/SecurityUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../distributed-security-demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../distributed-security-demo/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../employee-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../employee-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/PaymentServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/PaymentServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/TransactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/src/main/java/com/example/demo/entity/TransactionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../payment-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../payment-service/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3DpskAUAuh2aK7I9qLVNyJPDVV8" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/orion/Desktop/Arkar-Data/spring-by-sayakyaw/eureka-server",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="Spring Boot" factoryName="Spring Boot">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="579d03eb-c426-47f5-9635-6cffdac6272a" name="Changes" comment="" />
+      <created>1778990486295</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778990486295</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

@@ -1,0 +1,23 @@
+type EmployeeDto{
+	id:ID!
+	name:String!
+	department:String!
+	salary:Float!
+}
+
+type Query{
+	getAllEmployees:[EmployeeDto]
+	getEmployeeById(id:ID!):EmployeeDto
+}
+
+type Mutation{
+	createEmployee(employee:EmployeeInput!):EmployeeDto
+	updateEmployee(id:ID!,employee:EmployeeInput!):EmployeeDto
+	deleteEmployeeById(id:ID!):Boolean
+}
+
+input EmployeeInput{
+	name:String!
+	department:String!
+	salary:Float!
+}
