@@ -1,0 +1,140 @@
+package com.example.demo.service;
+
+import java.math.BigDecimal;
+import java.security.SecureRandom;
+import java.util.Map;
+
+import javax.security.auth.login.AccountNotFoundException;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.config.PaymentRabbitMqConfig;
+import com.example.demo.dao.AccountDao;
+import com.example.demo.dao.TransactionDao;
+import com.example.demo.entity.Account;
+import com.example.demo.entity.Transaction;
+import com.example.demo.entity.TransactionType;
+import com.example.demo.exception.AccountNoFoundException;
+import com.example.demo.exception.InSufficientAmountException;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class AccountService {
+	private final AccountDao accountDao;
+	private final TransactionDao transactionDao;
+	private final RabbitTemplate rabbitTemplate;
+	
+	public record PaymentRequest(
+			String fromUser,
+			String fromAccountNumber,
+			double amount,
+			String orderCode
+			) {}
+	
+	public record PaymentSuccessRequest(
+				String orderCode
+			) {}
+	
+	@RabbitListener(queues = "payment.processing.queue")
+	@Transactional
+	public void paymentRequestListenerFromInventory(PaymentRequest request) {
+	    	System.out.println("Payment Request : "+request);
+	        withdraw(request.fromUser, request.fromAccountNumber,
+	                request.amount, TransactionType.TRANSFER);
+	                
+	        deposit("MinPhayPhay", "AFFABLEBEAN-MINPHAYPHAY122324", request.amount,
+	                TransactionType.TRANSFER);
+	        // exchange, routing-key, body
+	        var paymentSuccessReqeust = new PaymentSuccessRequest(request.orderCode);
+	        rabbitTemplate.convertAndSend(PaymentRabbitMqConfig.EXCHANGE,PaymentRabbitMqConfig.PAYMENT_SUCCESS_ROUTING_KEY,paymentSuccessReqeust);;     
+	}
+	
+	@Transactional
+	public String transfer(
+			String fromUsername,
+			String fromAccountNumber,
+			String toUsername,
+			String toAccountNumeber,
+			double amount,
+			TransactionType type) {
+		withdraw(fromUsername, fromAccountNumber, amount, type);
+		deposit(toUsername, toAccountNumeber, amount, type);
+		return "success tranfer.";
+	}
+	public Map<String,String> withdraw(
+			String username,
+			String accountNumber,
+			double amount,TransactionType transactionType){
+		Account account=accountDao
+				.findByUsernameAndAccountNumber(username, accountNumber)
+				.orElseThrow(AccountNoFoundException::new);
+		if(account.getAmount().doubleValue() < amount ) {
+			throw new InSufficientAmountException();
+		}
+		account.setAmount(account.getAmount()
+				.subtract(BigDecimal.valueOf(amount)));
+		Transaction ts=new Transaction();
+		ts.setTransactionType(transactionType);
+		account.addTransaction(transactionDao.save(ts));
+		account=accountDao.saveAndFlush(account);
+		return Map.of(
+				"account-number",account.getAccountNumber(),
+				"username",account.getUsername(),
+				"transaction","Withdraw",
+				"currentAmount",String.valueOf(account.getAmount()));
+	}
+	
+	public Map<String,String> deposit(
+			String username,
+			String accountNumber,
+			double amount,TransactionType transactionType) {
+		Account account=accountDao
+				.findByUsernameAndAccountNumber(username, accountNumber)
+				.orElseThrow(AccountNoFoundException::new);
+		Transaction ts=new Transaction();
+		ts.setTransactionType(transactionType);
+		account.setAmount(account.getAmount().add(BigDecimal.valueOf(amount)));
+		account.addTransaction(transactionDao.save(ts));
+		account=accountDao.saveAndFlush(account);	
+		return Map.of(
+				"account-number",account.getAccountNumber(),
+				"username",account.getUsername(),
+				"transaction","Deposit",
+				"currentAmount",String.valueOf(account.getAmount()));
+	}
+
+	public String createAccount(String username) {
+		Account account=new Account();
+		account.setAccountNumber(generatedAccountNumber(username));
+		account.setUsername(username);
+		account.setAmount(BigDecimal.valueOf(0));
+		Transaction transaction=new Transaction();
+		transaction.setTransactionType(TransactionType.CREATE_ACCOUNT);
+		account.addTransaction(transactionDao.save(transaction));
+		accountDao.save(account);
+		return "%s successfully created %s account."
+				.formatted(username,account.getAccountNumber());
+	}
+	
+	@RabbitListener(queues = "payment_success_queue")
+	public void paymentSuccessListener(PaymentSuccessRequest request) {
+		System.out.println(" OrderCompleted============================================= + "+ request.orderCode );
+	}
+
+	private String generatedAccountNumber(String username) {
+		SecureRandom randon = new SecureRandom();
+		int num = randon.nextInt(100000) + 100000;// 0-99999 + 100000 - 6 digits
+		return new StringBuilder()
+				.append("AFFABLEBEAN-")
+				.append(username.toUpperCase())
+				.append(num)
+				.toString();
+
+	}
+
+}
