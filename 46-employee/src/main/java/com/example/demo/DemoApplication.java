@@ -21,7 +21,6 @@ public class DemoApplication {
 					new Employee("Justin","Hein","Just90510@gmail.com",20000)
 			).forEach(employeeDao::save);
 		};
-
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
