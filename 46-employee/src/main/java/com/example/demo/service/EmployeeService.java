@@ -6,7 +6,6 @@ import com.example.demo.enitty.Employee;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.util.BeanUtil;
 
 import java.util.List;
 
@@ -22,14 +21,28 @@ public class EmployeeService {
                 .toList();
     }
 
+    public EmployeeDto createEmployee(EmployeeDto dto){
+        return toDto(employeeDao.save(toEmployee(dto)));
+    }
+
+    public EmployeeDto findById(Long id) {
+        return toDto(employeeDao.findById(id).orElseThrow());
+    }
+
+    public void deleteById(Long id){
+        employeeDao.deleteById(id);
+    }
+
     private EmployeeDto toDto(Employee employee){
         EmployeeDto dto = new EmployeeDto();
-//        dto.setFirstName(employee.getFirstName());
-//        dto.setLastName(employee.getLastName());
-//        dto.setEmail(employee.getEmail());
-//        dto.setSalary(employee.getSalary());
         BeanUtils.copyProperties(employee,dto);
         return dto;
+    }
+
+    private Employee toEmployee(EmployeeDto dto){
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(dto,employee);
+        return employee;
     }
 
 }
