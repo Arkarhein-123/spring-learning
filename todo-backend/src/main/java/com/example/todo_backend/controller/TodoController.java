@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/todos")
+@RequestMapping("/api/todos")
 public class TodoController {
     private final TodoService todoService;
 
@@ -21,7 +21,6 @@ public class TodoController {
             String description,
             int dueDays
     ){}
-
 
     // http://localhost:8080/api/todos
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,4 +40,21 @@ public class TodoController {
     public List<TodoDto> findAllTodos(Authentication auth){
         return todoService.findAllTodos(auth.getName());
     }
+
+    @PutMapping("/completed/{id}")
+    public TodoDto changeCompleted(@PathVariable("id") long id){
+        return todoService.changeToCompleted(id);
+    }
+
+    @PutMapping("/uncompleted/{id}")
+    public TodoDto changeUncompleted(@PathVariable("id")long id){
+        return todoService.changeToUncompleted(id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteTodo(@PathVariable("id")long id){
+        todoService.deleteTodoById(id);
+    }
+
 }

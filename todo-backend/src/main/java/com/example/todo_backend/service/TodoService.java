@@ -60,4 +60,31 @@ public class TodoService {
                 .map(this::todoDto)
                 .toList();
     }
+
+    @Transactional
+    public TodoDto changeToCompleted(long id){
+        Todo todo = getTodoById(id);
+        todo.setIsCompleted(true);
+        return todoDto(todo);
+    }
+
+    @Transactional
+    public TodoDto changeToUncompleted(long id){
+        Todo todo = getTodoById(id);
+        todo.setIsCompleted(false);
+        return todoDto(todo);
+    }
+
+    @Transactional
+    public void deleteTodoById(long id){
+        Todo todo = getTodoById(id);
+        if(todo.getUser() != null){
+            todo.getUser().getTodos().remove(todo);
+        }
+        todoDao.delete(todo);
+    }
+
+    private Todo getTodoById(long id){
+        return todoDao.findById(id).orElseThrow();
+    }
 }
