@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/backend")
+@CrossOrigin("*")
 public class ProductController {
 	private final ProductService productService;
 
@@ -36,13 +38,14 @@ public class ProductController {
 	    return new ProductDto(
 	            product.getId(),
 	            product.getName(),
-	            product.getPrice(),
+	            product.getPrice(), 
 	            product.getDescription(),
 	            product.getLastUpdate(),
 	            catName
 	    );
 	}
 
+	// localhost:8080/api/backend/products/dairy
 	
 	@GetMapping("/products/product/{id}")
 	public ProductDto getProductById(@PathVariable("id") Long id) {
