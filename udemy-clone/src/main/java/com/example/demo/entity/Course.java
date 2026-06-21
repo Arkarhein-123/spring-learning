@@ -1,11 +1,10 @@
 package com.example.demo.entity;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,7 +25,21 @@ public class Course extends IdClass{
 	private Category category;
 	@ManyToOne
 	private Teacher teacher;
-	
+	@CollectionTable(name = "course_lessons")
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<CourseLesson> courseLessons = new ArrayList<>();
+
+	@OneToMany(mappedBy = "course")
+	private List<StudentEnrollCourse> enrolledCourse = new ArrayList<>();
+
+	public void addCourseLesson(CourseLesson courseLesson){
+		courseLessons.add(courseLesson);
+	}
+
+	public void addEnrolledCourse(StudentEnrollCourse course) {
+		course.setCourse(this);
+		enrolledCourse.add(course);
+	}
 }
 
 
