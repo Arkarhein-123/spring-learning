@@ -2,17 +2,15 @@ package org.example._4springdatajparevison.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name = "lecture_tbl")
-public class Lecture {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Lecture extends BaseEntity{
     private String name;
     @ManyToOne
     @JoinColumn(name = "section_id")

@@ -2,6 +2,7 @@ package org.example._4springdatajparevison.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +10,13 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="author_tbl")
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+public class Author extends BaseEntity{
+
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)

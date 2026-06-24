@@ -2,14 +2,17 @@ package org.example._4springdatajparevison.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Resource {
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "resource_type")
+public class Resource{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
