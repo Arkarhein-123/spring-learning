@@ -14,6 +14,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="author_tbl")
+@NamedQuery(
+        name = "Author.findByFirstName",
+        query = "select a from Author a where a.firstName = :firstName"
+)
 
 public class Author extends BaseEntity{
 
@@ -26,4 +30,5 @@ public class Author extends BaseEntity{
 
     @ManyToMany(mappedBy = "authors")
     private List<Course> courses = new ArrayList<>();
+
 }
